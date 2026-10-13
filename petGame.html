@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+	
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.4.2/pixi.min.js"></script>
+
+<div class="game-canvas-wrapper" style="position: relative;">
+  <canvas id="gameCanvas" width="9600" height="12800"></canvas>
+
+</div>  
+  <canvas id="uiCanvas" width="420" height="800" className="absolute inset-0 z-0"
+      style="position: fixed; top: 75px; right: 0; z-index: 10; 
+	  background-color: #2b4c68; 
+	  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000" >
+  </canvas>
+  <!-- resource UI-->
+<canvas id="resourceCanvas" width="0"; height="0"
+        style="position: fixed; top: 10px; left: 7%; z-index: 10; 
+               background-color: #000000; opacity:0.7;">
+</canvas>
+  <!-- Notification UI -->
+<canvas id="notificationCanvas" 
+        style="position: fixed; top: 50px; left: 7%; z-index: 10; 
+               background-color: rgba(0,0,0,0.5); /* Optional: see through */">
+</canvas>
+  <!-- place menu-->
+
+<!-- Arrow section -->
+<div class="arrow-dpi-wrapper" style="position: fixed; bottom: 20px; left: 94%; z-index: 1000;">
+  <div class="placeArrowContainer">
+    <figure class="image is-128x128">
+      <img class="is-rounded" src="Pics/plain-arrow.png" />
+    </figure>
+  </div>
+</div>
+
+<!-- Coral section wrapper with ID for easy access -->
+<div id="coral-menu-wrapper" class="coral-dpi-wrapper is-hidden" style="position: fixed; bottom: 20px; left: 10%; width: 1000px; z-index: 1000;">
+
+    <div class="coralContainer">
+        <!-- dynamic coral components go here -->
+    </div>
+</div>
+<!-- Energy  section wrapper with ID for easy access -->
+<div id="energyBuilding-menu-wrapper" class="energyBuilding-dpi-wrapper is-hidden" style="position: fixed; bottom: 20px; left: 10%; width: 1000px; z-index: 1000;">
+  <div class="energyBuildingContainer"></div>
+</div>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+<script src="UI/UI.js"></script>
+<script src="UI/UIOutliner/UIOutlinerCard.js"></script>
+<script src="UI/UIOutliner/UIOutliner.js"></script>
+<script src="UI/UIOutliner/UIOutlinerButtons.js"></script>
+<script src="UI/UIOutliner/UIOutlinerButtonsController.js"></script>
+<script src="UI/UIOutliner/UIOutlinerInfo.js"></script>
+<script src="UI/UILogic.js"></script>
+<script src="UI/coralUI/coralUI.js"></script>
+<script src="UI/coralUI/coralUILogic.js"></script>
+<script src="UI/infoBoxUI/storageUI.js"></script>
+<script src="UI/infoBoxUI/statsUI.js"></script>
+<script src="UI/infoBoxUI/infoBoxUI.js"></script>
+<script src="UI/infoBoxUI/infoBoxButtons.js"></script>
+<script src="UI/infoBoxUI/infoBoxController.js"></script>
+<script src="UI/commandsUI/commandsUI.js"></script>
+<script src="UI/commandsUI/commandsUIController.js"></script>
+<script src="UI/coralCardsUI/coralCardUI.js"></script>
+<script src="UI/growthUI/growthUI.js"></script>
+<script src="UI/growthUI/productionUI.js"></script>
+<script src="UI/growthUI/overheatingUI.js"></script>
+<script src="UI/placeMenuUI/placeMenuUI.js"></script>
+<script src="UI/placeMenuUI/placeMenuUILogic.js"></script>
+<script src="UI/placeMenuUI/CoralComponent.js"></script>
+<script src="UI/placeMenuUI/BuildingComponent.js"></script>
+<script src="UI/progressBarUI/ProgressBarComponent.js"></script>
+<script src="UI/progressBarUI/CanvasProgressBar.js"></script>
+<script src="UI/resourceUI/resourceUI.js"></script>
+<script src="UI/SaveUI/UISaveGame.js"></script>
+<script src="UI/SaveUI/UISaveGameLogic.js"></script>
+<script src="UI/SaveUI/saveGameCard.js"></script>
+<script src="UI/ObjectivesUI/UIObjectives.js"></script>
+<script src="UI/EvolutionUI/EvolutionUI.js"></script>
+<script src="UI/researchUI/researchUI.js"></script>
+<script src="UI/NotificationsUI/notificationsClass.js"></script>
+<script src="UI/NotificationsUI/notificationsUI.js"></script>
+
+
+<script src="gameClock.js"></script>
+
+
+<script src="AI/boilerPlate.js"></script>
+<script src="AI/attachToAnemone.js"></script>
+<script src="AI/gatherSeaweedSequence.js"></script>
+<script src="AI/gatherCalciumCarbonateSequence.js"></script>
+<script src="AI/attackSequence.js"></script>
+<script src="AI/gatherPlanktonSequence.js"></script>
+<script src="AI/digForPlanktonSequence.js"></script>
+<script src="AI/patrolSequence.js"></script>
+<script src="AI/eatSequence.js"></script>
+<script src="AI/restSequence.js"></script>
+<script src="AI/spreadCalciumCarbonateSequence.js"></script>
+<script src="AI/grazeSequence.js"></script>
+<script src="AI/fleeSequence.js"></script>
+<script src ="AI/moveToPlayerCharacter.js"></script>
+<script src ="AI/detritivoreSequence.js"></script>
+
+
+<!-- //playable Actors  -->
+<script src="Classes/PlayableActors/fishClass.js"></script>
+<script src="Classes/PlayableActors/shrimpClass.js"></script>
+<script src="Classes/PlayableActors/seahorseClass.js"></script>
+<script src="Classes/PlayableActors/DamselfishClass.js"></script>
+<script src="Classes/PlayableActors/pistolShrimpClass.js"></script>
+<script src="Classes/PlayableActors/yellowTangClass.js"></script>
+<script src="Classes/PlayableActors/crabClass.js"></script>
+<script src="Classes/PlayableActors/HermitCrabClass.js"></script>
+
+
+<!-- // corals  -->
+<script src="Classes/Corals/anemoneClass.js"></script>
+<script src="Classes/Corals/organPipeCoralClass.js"></script>
+<script src="Classes/Corals/brainCoralClass.js"></script>
+<script src="Classes/Corals/fingerCoralClass.js"></script>
+
+<!-- // enemy Actors  -->
+
+<script src="Classes/EnemyActors/jellyClass.js"></script>
+<script src="Classes/EnemyActors/barracudaClass.js"></script>
+
+<!-- // Resources  -->
+<script src="Classes/Resources/spongeClass.js"></script>
+<script src="Classes/Resources/seaweedClass.js"></script>
+<script src="Classes/Resources/seagrassClass.js"></script>
+<script src="Classes/Resources/rocksClass.js"></script>
+<!-- // BUildings  -->
+<script src="Classes/Buildings/TidemillClass.js"></script>
+<script src="Classes/Buildings/SolarPanelClass.js"></script>
+<script src="Classes/Buildings/SandBatteryClass.js"></script>
+<!-- // other classes  -->
+
+<script src="Classes/bleachedCoralClass.js"></script>
+<script src="Classes/calciumCarbClass.js"></script>
+<script src="Classes/krillClass.js"></script>
+<script src="Classes/particleClass.js"></script>
+
+
+<script src="Sounds/soundLogic.js"></script>
+<script src="Sounds/selectSounds.js"></script>
+
+
+
+<script src="animationLogic.js"></script>
+<script src="effects.js"></script>
+<script src="drawLogic.js" ></script>
+<script src="utils.js" ></script>
+<script src="main.js" ></script>
+<script src="level0.js" ></script>
+<script src="selectLogic.js" ></script>
+<script src="hoverLogic.js" ></script>
+
+
+
+</body>
+</html>

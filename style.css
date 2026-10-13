@@ -1,0 +1,225 @@
+html {
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+  overflow:auto;
+}
+
+
+/* Remove any overflow from the div */
+div[style*="position: relative"] {
+  overflow: visible;  /* or simply remove the overflow rule */
+}
+
+/* Allow body to scroll */
+body {
+  overflow: auto;                 /* allows scrolling when content overflows */
+  scrollbar-width: none;         /* hides scrollbar in Firefox */
+  -ms-overflow-style: none;      /* hides scrollbar in IE/Edge */
+  margin:0;
+  min-width: 9600px; 
+}
+.game-canvas-wrapper {
+  max-width: none;
+  width: 9600px;
+}
+#uiCanvas {
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+}
+
+.coralContainer {
+    position: fixed;  /* keep only one position */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    bottom: 3%;
+    left: 15%;
+    width: 150%;
+    z-index: 1000;
+    height: 22rem;
+    background-color: rgba(0, 128, 0, 0.15);
+    -webkit-mask: radial-gradient(circle, black 95%, transparent 100%);
+    mask: radial-gradient(circle, black 95%, transparent 100%);
+    border-radius: 50% 50% 0 0 / 100px 100px 0 0;
+}
+
+.coral-menu-title {
+    position: absolute;
+    top: 5px;           /* adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    color: white;       /* light color so it pops */
+    font-size: 1.8rem;  /* reasonable size */
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    z-index: 10;
+    pointer-events: none;
+    white-space: nowrap;
+    background: rgba(0,0,0,0.4); /* optional: pill background for readability */
+    padding: 0 10px;
+    border-radius: 20px;
+}
+
+.coralContainer figure {
+  height: 90%;
+  margin: 0 1rem 1rem 1rem; /* Add spacing between corals */
+  display: flex;
+  align-items: flex-end;
+  transform: translateY(55px)
+  
+}
+
+.coralContainer img {
+  height: 90%;
+  width: auto;
+  object-fit: contain; /* Maintain aspect ratio */
+  object-position: center;
+}
+
+.coralContainer:hover {
+  transition: all 0.3s ease-in-out;
+  transform-origin: center bottom;
+}
+
+.coralContainer img:hover {
+  transition: all 0.3s ease-in-out;
+  transform: translateY(-10px) scale(1.05);
+  filter: drop-shadow(0 10px 8px rgba(0,0,0,0.15));
+  cursor: pointer;
+  transform-origin: bottom center; /* Add this to pivot from bottom */
+}
+  
+.placeArrowContainer {
+    position: fixed;
+    bottom: -3%;
+    left: 94%;
+    z-index: 1000;
+    cursor: pointer;
+    
+}
+
+.placeArrowContainer.rotated img {
+    transform: rotate(90deg) scale(1.05);
+    transition: all 0.3s ease-in-out;
+    filter: drop-shadow(0 10px 8px rgba(0,0,0,0.15));
+}
+
+.placeArrowContainer .image img {
+    width: 75px;
+    height: auto;
+    transition: all 0.3s ease-in-out;
+}
+.energyBuildingContainer {
+    position: fixed;  /* keep only one position */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    bottom: 3%;
+    left: 15%;
+    width: 150%;
+    z-index: 1000;
+    height: 22rem;
+    background-color: rgba(0, 128, 0, 0.15);
+    -webkit-mask: radial-gradient(circle, black 95%, transparent 100%);
+    mask: radial-gradient(circle, black 95%, transparent 100%);
+    border-radius: 50% 50% 0 0 / 100px 100px 0 0;
+}
+
+.energyBuildingContainer figure {
+  height: 100%;
+  margin: 0 0.5rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.energyBuildingContainer img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.energyBuildingContainer img:hover {
+  transition: all 0.3s ease-in-out;
+  transform: translateY(-10px) scale(1.05);
+  filter: drop-shadow(0 10px 8px rgba(0,0,0,0.15));
+  cursor: pointer;
+  transform-origin: bottom center;
+}
+
+  .is-hidden {
+    display: none;
+}
+  
+
+/* but DPI scaling is also needed – so add a separate class for DPI */
+.placeArrowContainer.dpi-scaled {
+    transform: scale(0.5); /* applied by JS */
+}
+  
+ .coral-component {
+  position: relative;
+}
+.coral-title {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 22px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    white-space: nowrap;
+    pointer-events: none;
+}
+.coral-counter {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+.building-cost {
+    position: absolute;
+    bottom: -75px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    color: gold;
+    border-radius: 12px;
+    padding: 2px 6px;
+    font-size: 22px;
+    white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.progress {
+  transition: 
+    transform 0.2s ease-out,
+    opacity 0.3s ease;
+  pointer-events: none; /* Prevent blocking clicks */
+}
+
+
+
